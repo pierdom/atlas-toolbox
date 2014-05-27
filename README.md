@@ -7,6 +7,8 @@ Atlas is a large measurement network composed of geographically distributed prob
 
 This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs.
 
+**THIS IS A BETA VERSION AND MAY CONTAIN SOME BUGS**
+
 #### List of scripts
 
 - **probe-list**: search probes on the network
