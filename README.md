@@ -5,18 +5,26 @@ Atlas Toolbox is a collection of Perl scripts from managing custom User Defined 
 
 Atlas is a large measurement network composed of geographically distributed probes used to measure Internet connectivity and reachability.
 
-This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results.
+This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs.
 
-The scripts use Atlas' REST APIs.
+#### List of scripts
+
+- **probe-list**: search probes on the network
+- **udm-create**: set up a custom measurement (ping/traceroute/dns)
+- **udm-status**: check status of a measurement
+- **udm-result**: retrieve results of a measurement
+- **udm-stop**: stop a running measurement
+- **udm-lookup**: search existing measurements
 
 ----------
 
 Prerequisites
 -------------
 
-To run the scripts, the Perl interpreter is needed (it comes pre-installed on most systems). Additional PERL modules are used, such as HTTP::Request, HTTP::Response, LWP::UserAgent, LWP::Sumple, JSON and Geo::Coder.
+To run the scripts, the Perl interpreter is needed (it comes pre-installed on most systems). 
+Additional PERL modules are used, such as HTTP::Request, HTTP::Response, LWP::UserAgent, LWP::Sumple, JSON and Geo::Coder.
 
-The last two might might need to be manually installed (see details below).
+The last two might might need to be manually installed via the OS packet manager or CPAN, as showed below.
 
 #### Debian/Ubuntu systems
 
@@ -33,18 +41,26 @@ install JSON
 install Geo::Coder::Googlev3
 ```
 
+Check here how to install Perl modules: <http://www.cpan.org/modules/INSTALL.html>
+
 Install
 -------
 
 ```sh
-git clone [git-repo-url] xxxxx
-cd dillinger
+git clone http://github.com/pierdom/atlas-toolbox
+cd atlas-toolbox
 ```
 
 Usage
 -----
 
-Every scripts comes with its own documentation. To have a list of all available arguments use --help options; to reed the full documentation:
+Run a script:
+
+```
+perl <script-name> [OPTIONS]...
+```
+
+Every scripts comes with its own documentation. To have a list of all available options use --help option; to reed the full documentation:
 
 ```sh
 perldoc <script-name>
@@ -77,5 +93,6 @@ funded mPlane ICT-318627 project (www.ict-mplane.eu).
 Author
 ------
 
-Pierdomenico Fiadio (<fiadino@ftw.at>)
+Pierdomenico Fiadino
+fiadino@ftw.at
 <http://userver.ftw.at/~fiadino>
