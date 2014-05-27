@@ -1,7 +1,7 @@
 RIPE Atlas Toolbox
 =====================
 
-Atlas Toolbox is a collection of Perl scripts from managing custom User Defined Measurements (UDMs) on the **RIPE Atlas** network.
+Atlas Toolbox is a collection of Perl command-line scripts from managing custom User Defined Measurements (UDMs) on the **RIPE Atlas** network.
 
 Atlas is a large measurement network composed of geographically distributed probes used to measure Internet connectivity and reachability.
 
