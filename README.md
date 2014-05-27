@@ -47,7 +47,7 @@ Install
 -------
 
 ```sh
-git clone http://github.com/pierdom/atlas-toolbox
+git clone https://github.com/pierdom/atlas-toolbox
 cd atlas-toolbox
 ```
 
