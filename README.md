@@ -5,9 +5,9 @@ Atlas Toolbox is a collection of Perl command-line scripts from managing custom 
 
 Atlas is a large measurement network composed of geographically distributed probes used to measure Internet connectivity and reachability.
 
-This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs. Currently, the measurement types supported are: **ping**, **traceroute** and **dns**.
+This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs. Currently, the measurement types supported are: **ping**, **traceroute** and **dns**. Other types (e.g. **sslcert** and **http**) will be implemented in future.
 
-Please be aware that **THIS IS A BETA VERSION AND MAY CONTAIN SOME BUGS**.
+Please be aware that **THIS IS A BETA VERSION, MAY CONTAIN SOME BUGS** and does not implement all Atlas' features.
 
 #### List of scripts
 
@@ -24,20 +24,20 @@ Prerequisites
 -------------
 
 To run the scripts, the Perl interpreter is needed (it comes pre-installed on most systems). 
-Additional PERL modules are used, such as HTTP::Request, HTTP::Response, LWP::UserAgent, LWP::Sumple, JSON and Geo::Coder.
+Additional PERL modules are used, such as HTTP::Request, HTTP::Response, LWP::UserAgent, LWP::Simple, JSON and Geo::Coder.
 
-The last two might might need to be manually installed via the OS packet manager or CPAN, as showed below.
+The last two might need to be manually installed via the OS packet manager or CPAN, as showed below.
 
 #### Debian/Ubuntu systems
 
-```
+```sh
 sudo apt-get install libjson-perl
 sudo apt-get install libgeo-coder-googlev3-perl
 ```
 
 #### Using CPAN (multi-platform)
 
-```
+```sh
 sudo perl -MCPAN -e shell
 install JSON
 install Geo::Coder::Googlev3
@@ -71,7 +71,7 @@ Find all probes in Italy at less than 2Km from an address:
 ### Set-up measurements
 
 In order to set-up a UDM, you should first create an API key with 'Measurement creation' permissions.
-udm-create.pl will return the measurement ID (UDM-ID) if it is successful or return an error code.
+udm-create.pl will return the measurement ID (UDM-ID) if it is successful or an error code.
 
 Instrument 2 probes to ping a host:
 ```sh
