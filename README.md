@@ -5,9 +5,9 @@ Atlas Toolbox is a collection of Perl command-line scripts from managing custom 
 
 Atlas is a large measurement network composed of geographically distributed probes used to measure Internet connectivity and reachability.
 
-This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs.
+This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs. Currently, the measurement types supported are: **ping**, **traceroute** and **dns**.
 
-**THIS IS A BETA VERSION AND MAY CONTAIN SOME BUGS**
+Please be aware that **THIS IS A BETA VERSION AND MAY CONTAIN SOME BUGS**.
 
 #### List of scripts
 
@@ -53,20 +53,85 @@ git clone https://github.com/pierdom/atlas-toolbox
 cd atlas-toolbox
 ```
 
-Usage
------
 
-Run a script:
+Usage Examples
+--------------
 
+### Find probes
+
+Find at most 5 probes in a specific Autonomous System:
+```sh
+./probe-list.pl --asn 1234 --limit 5
 ```
-perl <script-name> [OPTIONS]...
+Find all probes in Italy at less than 2Km from an address:
+```sh
+./probe-list.pl --country it --address "Piazza di Spagna, Rome" --radius 2
 ```
 
-Every scripts comes with its own documentation. To have a list of all available options use --help option; to reed the full documentation:
+### Set-up measurements
+
+In order to set-up a UDM, you should first create an API key with 'Measurement creation' permissions.
+udm-create.pl will return the measurement ID (UDM-ID) if it is successful or return an error code.
+
+Instrument 2 probes to ping a host:
+```sh
+./udm-create.pl --api <API-KEY> --type ping --target www.example.com --probe-list 1234,5678
+```
+
+Resolve a host with probes' default DNS server:
+```sh
+./udm-create.pl --api <API-KEY> --type dns --dns-arg www.example.com --probe-list 1234,5678
+```
+
+Ping a host every 5 minutes for 2 consecutive days and resolve it using probes' default DNS server:
+```sh
+./udm-create.pl --api <API-KEY> --type ping --target www.example.com --probe-list 1234,5678 --resolve-on-probe --start 1403042400 --stop 1403215199 --interval 300
+```
+
+Use probe-list.pl output to define set of probes for a measurement using pipe:
+```sh
+./probe-list.pl --country it --asd 1234 | ./udm-create.pl --api <API-KEY> --type ping --target example.com
+```
+
+### Measurement management (check status, get results and stop)
+
+For measurement management, the UDM-ID is used. In some cases (e.g. private measurement), an API key may be needed (use --api argument).
+
+Print UDM status:
+```sh
+./udm-status.pl --udm <UDM-ID>
+```
+Get UDM results:
+```sh
+./udm-result.pl --udm <UDM-ID>
+```
+Stop a measurement (requires API key with stop permission):
+```sh
+./udm-stop.pl --udm <UDM-ID> --api <KEY>
+```
+
+### Search existing measurements
+
+Running your own measurement consume credits. It could be that some other user set already up a UDM you are interested. To search an existing measurement:
 
 ```sh
-perldoc <script-name>
+./probe-lookup.pl --type traceroute --target www.example.com
 ```
+
+
+Documentation
+-------------
+
+Every script comes with its own documentation. To see a full list of available arguments, use --help. Example:
+```sh
+./probe-list.pl --help
+```
+
+To read the full documentation:
+```sh
+perldoc probe-list.pl
+```
+
 
 License
 -------
@@ -96,5 +161,6 @@ Author
 ------
 
 Pierdomenico Fiadino
-fiadino@ftw.at
-<http://userver.ftw.at/~fiadino>
+
+Contacts:
+fiadino@ftw.at - <http://userver.ftw.at/~fiadino>
