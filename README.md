@@ -5,7 +5,7 @@ Atlas Toolbox is a collection of Perl command-line scripts from managing custom 
 
 Atlas is a large measurement network composed of geographically distributed probes used to measure Internet connectivity and reachability.
 
-This toolbox allow to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs. Currently, the measurement types supported are: **ping**, **traceroute** and **dns**. Other types (e.g. **sslcert** and **http**) will be implemented in future.
+This toolbox allows to search probes on the network, visualize public measurements set by other Atlas users, configure custom active measurements and get their results. The scripts use Atlas' REST APIs. Currently, the measurement types supported are: **ping**, **traceroute** and **dns**. Other types (e.g. **sslcert** and **http**) will be implemented in future.
 
 Please be aware that **THIS IS A BETA VERSION, MAY CONTAIN SOME BUGS** and does not implement all Atlas' features.
 
