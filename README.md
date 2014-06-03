@@ -24,16 +24,17 @@ Prerequisites
 -------------
 
 To run the scripts, the Perl interpreter is needed (it comes pre-installed on most systems). 
-Additional PERL modules are used, such as HTTP::Request, HTTP::Response, LWP::UserAgent, LWP::Simple, JSON and Geo::Coder.
+Additional PERL modules are used, such as HTTP::Request, HTTP::Response, LWP::UserAgent, LWP::Simple, LWP::Protocol::https, JSON and Geo::Coder.
 
-The last two might need to be manually installed via the OS packet manager or CPAN, as showed below.
+The last three might need to be manually installed via the OS packet manager or CPAN, as showed below.
 
 #### Debian/Ubuntu systems
 
 ```sh
-sudo apt-get install libjson-perl
-sudo apt-get install libgeo-coder-googlev3-perl
+sudo apt-get install libjson-perl libgeo-coder-googlev3-perl
 ```
+
+All other required modules should be already installed in Ubuntu (tested 14.04).
 
 #### Using CPAN (multi-platform)
 
@@ -41,6 +42,7 @@ sudo apt-get install libgeo-coder-googlev3-perl
 sudo perl -MCPAN -e shell
 install JSON
 install Geo::Coder::Googlev3
+install LWP::Protocol::https
 ```
 
 Check here how to install Perl modules: <http://www.cpan.org/modules/INSTALL.html>
