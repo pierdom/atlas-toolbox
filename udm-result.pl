@@ -74,7 +74,7 @@ exit 1;
 # print a line  of results with UDMtype-specific format
 sub print_result {
 	my ($res) = @_;
-	print Dumper($res);
+	##print Dumper($res);
 	# read measurement type
 	my $type = $res->{'type'};
 	
