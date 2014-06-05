@@ -269,6 +269,7 @@ else {
 	print STDERR "POST URL: $atlas_url\n";
 	print STDERR "JSON content: ";
 	print STDERR Dumper($dumb);
+	print STDERR "Message: " . $response->decoded_content . "\n";
 	exit 0;
 }
 
