@@ -162,7 +162,5 @@ funded mPlane ICT-318627 project (www.ict-mplane.eu).
 Author
 ------
 
-Pierdomenico Fiadino
-
-Contacts:
-fiadino@ftw.at - <http://userver.ftw.at/~fiadino>
+* Main author: **Pierdomenico Fiadino** - <fiadino@ftw.at> - <http://userver.ftw.at/~fiadino>
+* Contributor: **Sarah Wassermann** -  <https://github.com/SAWassermann>
