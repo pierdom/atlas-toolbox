@@ -55,7 +55,7 @@ print Dumper($status_hash);
 
 ## exit
 
-exit 1;
+exit 0;
 
 __END__
 

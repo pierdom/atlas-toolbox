@@ -60,14 +60,14 @@ if($latest) {
 
 else {	
 	my $udm_result_json = get $url;
-	my $udm_result_array = from_json $udm_result_json;
+	my $udm_result_array = from_json $udm_result_json or exit 1;
 
 	for my $result (@$udm_result_array) {
 		print_result($result);		
 	}
 }
 
-exit 1;
+exit 0;
 
 ### subroutines ###
 
@@ -117,28 +117,42 @@ sub print_result {
 	}
 	
 	# if type is traceroute, print result line(s) accordingly
-	elsif($type eq "traceroute") {
-		my $dst_addr = $res->{'dst_addr'} || "NA";
-		my $dst_name = $res->{'dst_name'} || "NA";
-		my $res_set  = $res->{'result'};
-		my $hop_count= scalar @$res_set;
-		print "$probe\t$dst_name\t$dst_addr\t$hop_count\n";
-		foreach my $hop (@$res_set) {
-			my $hop_num = $hop->{'hop'};
-			my $hop_set = $hop->{'result'};
-			my $avg_rtt = 0; my $pack_count = 0;
-			my ($from_ip,$ttl,$rtt);
-			foreach my $hop_step (@$hop_set) {
-				$from_ip = $hop_step->{'from'} || '*';
-				$ttl     = $hop_step->{'ttl'} || '*';
-				$rtt     = $hop_step->{'rtt'} || '0';
-				$avg_rtt += $rtt;
-				$pack_count++;
-			}
-			$avg_rtt = ($avg_rtt>0) ? ($avg_rtt/$pack_count) : '*';
-			print "\t$hop_num\t$from_ip\t$ttl\t$avg_rtt\n";
-		}
-	}	
+	 elsif($type eq "traceroute") {
+                my $dst_addr = $res->{'dst_addr'} || "NA";
+                my $dst_name = $res->{'dst_name'} || "NA";
+                my $res_set  = $res->{'result'};
+                my $hop_count= scalar @$res_set;
+                #print "$probe\t$dst_name\t$dst_addr\t$hop_count\n";
+                my @res_buffer;
+                foreach my $hop (@$res_set) {
+                        my $hop_num = $hop->{'hop'};
+                        my $hop_set = $hop->{'result'};
+                        my $avg_rtt = 0; my $pack_count = 0;
+                        my ($from_ip,$ttl,$rtt);
+                        foreach my $hop_step (@$hop_set) {
+                                $from_ip = $hop_step->{'from'} || '*';
+                                $ttl     = $hop_step->{'ttl'} || '*';
+                                $rtt     = $hop_step->{'rtt'} || '0';
+                                $avg_rtt += $rtt;
+                                $pack_count++;
+                        }
+                        $avg_rtt = ($avg_rtt>0) ? ($avg_rtt/$pack_count)
+                        : '*';
+                        #print "\t$hop_num\t$from_ip\t$ttl\t$avg_rtt\n";
+                        if(defined $from_ip && defined $ttl && defined
+                        $avg_rtt) {
+                                push @res_buffer,
+                                "\t$hop_num\t$from_ip\t$ttl\t$avg_rtt\n";
+                        }
+                }
+                if(scalar(@res_buffer) > 0) {
+                        print
+                        "$probe\t$dst_name\t$dst_addr\t$hop_count\n";
+                        foreach my $res (@res_buffer) {
+                                print $res;
+                        }
+                }
+        }
 
 	else {
 		die "UDM type $type is currenty unsupported"

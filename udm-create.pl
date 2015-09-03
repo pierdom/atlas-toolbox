@@ -262,7 +262,7 @@ if($response->is_success) {
 	my ($msm_list) = $dec_content =~ m/\[(.*)\]/;
 	print join("\n",(split /,/,$msm_list));
 	print "\n";
-	exit 1;
+	exit 0;
 }
 else {
 	print STDERR "Error submitting UDM json: ".$response->status_line."\n";
@@ -270,7 +270,7 @@ else {
 	print STDERR "JSON content: ";
 	print STDERR Dumper($dumb);
 	print STDERR "Message: " . $response->decoded_content . "\n";
-	exit 0;
+	exit 1;
 }
 
 

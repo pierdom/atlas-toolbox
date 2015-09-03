@@ -87,7 +87,7 @@ if($area and ! exists $avail_areas{$area}) {
 
 
 # default options
-unless($limit)  { $limit = 1000 }
+unless($limit)  { $limit = 20000 }
 unless($status) { $status= 1    }
 
 # subroutines
@@ -173,7 +173,7 @@ my $qlimit = 30;
 #if($limit)		{	$query_url.="limit=$limit&";			}
 my $next = $base_url;
 if($country)	{	$next.="country_code=$country&";	}
-if($asn)		{	$next.="asn=$asn&"; 				}
+if($asn)		{	$next.="asn_v4=$asn&"; 				}
 if($prefix)		{	$next.="prefix_v4=$prefix&";		}
 if($area)		{	$next.="area=$area&";				}
 

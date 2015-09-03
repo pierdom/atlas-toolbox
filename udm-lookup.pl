@@ -84,7 +84,7 @@ while($next_url) {
 
 ## exit loop and exit script
 
-exit 1;
+exit 0;
 
 ## subroutines ##
 

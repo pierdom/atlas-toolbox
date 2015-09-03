@@ -42,12 +42,12 @@ my $http_res = $lwp_ua->request($http_req);
 
 if($http_res->is_success) {
 	print "Measurement $udmid has been successfully stopped.\n";
-	exit 1;
+	exit 0;
 }
 else {
 	print STDERR "Error in stopping UDM $udmid.\n";
 	print STDERR "Remote message: " . $http_res->{_msg} . "\n";
-	exit 0;
+	exit 1;
 }
 
 
